@@ -1,0 +1,31 @@
+# here we define the events and customised entities
+# i.e the different types upon which we can run queries
+type ActiveItem @entity {
+  id: ID!
+  buyer: Bytes! # address..........!(exclamation mark) indicates that this property MUST be required
+  seller: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
+} #this is a customised table/entity we want in our subgraph
+type ItemListed @entity {
+  id: ID! # exclamation marks indicate that this entity must have an id
+  seller: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
+} #this is an event
+type ItemCanceled @entity {
+  id: ID!
+  seller: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+} #this is an event
+type ItemBought @entity {
+  id: ID!
+  buyer: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
+} #this is an event
+#every time we update schema.graphql, we have to run "graph codegen" to update the generated dir
